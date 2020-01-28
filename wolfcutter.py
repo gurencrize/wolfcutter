@@ -1,5 +1,5 @@
 import numpy as np
-from tkinter import Tk,ttk,filedialog,StringVar,Spinbox,PhotoImage
+from tkinter import Tk,ttk,filedialog,StringVar,Spinbox,PhotoImage,messagebox
 from PIL import Image,ImageDraw,ImageTk
 import os
 tate=8
@@ -25,14 +25,15 @@ class griddraw:
       yoko=int(sptxt2.get())
       if not os.path.exists(dirname):
         os.mkdir(dirname)
-      trimwidth=self.width//yoko
-      trimheight=self.height//tate
-      for i in range(tate):
-        for j in range(yoko):
-          trimimg=img.crop((trimwidth*j,trimheight*i,trimwidth*(j+1),trimheight*(i+1)))
+      trimwidth=self.width//tate
+      trimheight=self.height//yoko
+      print(trimwidth,trimheight)
+      for i in range(yoko):
+        for j in range(tate):
+          trimimg=img.crop((trimwidth*j+1,trimheight*i+1,trimwidth*(j+1),trimheight*(i+1)))
           #上書き確認入れたい
           trimimg.save(dirname+"/"+imgname+str(i*yoko+j+1)+".png")
-      #完了時になんかメッセージ出したい
+      messagebox.showinfo('wolfcutter','生成が完了しました')
   def setputpass(self,n):
     self.putpass=n
   def updatelabel1(self):
