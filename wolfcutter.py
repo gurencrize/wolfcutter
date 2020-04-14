@@ -65,7 +65,7 @@ def draw_horizonal(n:int,draw):
       a=int(height/n)
       draw.line([(0,a*i),(width,a*i)],fill=(255,0,0),width=1)
 root = Tk()
-root.title('補助線描画')
+root.title('wolfcutter')
 
 frame1 = ttk.Frame(root)
 frame1['height'] = 200
@@ -127,5 +127,14 @@ def triming():
   image.imgtrim()
 button5=ttk.Button(frame1,text="連番出力",command=triming)
 button5.grid(row=3,column=0)
+
+def charatrim():
+  tate=6
+  yoko=4
+  sptxt1.set(tate)
+  sptxt2.set(yoko)
+  redrawline()
+button6=ttk.Button(frame1,text="合成器キャラ用",command=charatrim)
+button6.grid(row=3,column=1)
 
 root.mainloop()
